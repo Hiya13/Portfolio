@@ -1,9 +1,16 @@
 import { useState } from "react"
+import { navLinks } from "../constants";
 
 const NavItems = () =>{
     return(
         <ul className="nav-ul">
-            {}
+            {navLinks.map(({id,href,name}) => (
+                <li key={id} className="nav-li"> 
+                    <a href={href} className="nav-li_a" onClick={() => {}}>
+                        {name}
+                    </a>
+                </li>
+            ))}
         </ul>
     )
 }
@@ -21,10 +28,16 @@ const Navbar = () => {
                     Hiya
                 </a>
                 <button onClick={toggleMenu} className="text-neutral-400 hover:text-white focus:outline-none sm:hidden flex" aria-label="Toggle menu">
-                    <img src={isOpen? "public/close.svg" : "public/menu.svg"} alt="toggle" className="w-6 h-6"/>
+                    <img src={isOpen? "public/assets/close.svg" : "public/assets/menu.svg"} alt="toggle" className="w-6 h-6"/>
                 </button>
                 <nav className="sm:flex hidden"><NavItems/></nav>
             </div>
+        </div>
+
+        <div className={`nav-sider overflow-hidden transition-all duration-300 ${isOpen? 'max-h-screen' : 'max-h-0'}`}>
+            <nav className="p-5">
+                <NavItems/>
+            </nav>
         </div>
     </header>
   )
